@@ -1,6 +1,8 @@
 package banking_application.service.impl;
 
 import banking_application.dto.AccountDto;
+import banking_application.entity.Account;
+import banking_application.mapper.AccountMapper;
 import banking_application.repository.AccountRepository;
 import banking_application.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,9 @@ public class AccountServiceImpl implements AccountService {
 
 
     @Override
-    public AccountDto createAccount(AccountDto account) {
-        return null;
+    public AccountDto createAccount(AccountDto accountDto) {
+        Account account = AccountMapper.mapToAccount(accountDto);
+       Account savedAccount = accountRepository.save(account);
+        return AccountMapper.mapToAccountDto(savedAccount);
     }
 }
