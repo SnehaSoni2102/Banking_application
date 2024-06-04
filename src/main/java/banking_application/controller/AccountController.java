@@ -20,4 +20,11 @@ public class AccountController {
     public ResponseEntity<AccountDto> addAccount(@RequestBody AccountDto accountDto){
         return new ResponseEntity<>(accountService.createAccount(accountDto), HttpStatus.CREATED);
     }
+
+    //Get Account RestApi
+    @GetMapping("/{id}")
+    public ResponseEntity<AccountDto> getAccountbyId(@PathVariable Long id){
+        AccountDto accountDto =accountService.getAccountById(id);
+        return ResponseEntity.ok(accountDto);
+    }
 }
